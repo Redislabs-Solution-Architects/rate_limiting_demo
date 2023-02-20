@@ -1,0 +1,25 @@
+Indexes:
+FT.CREATE idx-createdTime-v2 PREFIX 1 "appointment:" SCHEMA createdTime NUMERIC SORTABLE
+
+
+Data Model:
+
+  "username": "abhishek",
+  "doctorName": "Dr. ABC",
+  "contactNo": "12321",
+  "appointmentDate": "2022-04-11T20:58",
+  "status": "Confirmed",
+  "description": "fweferferererre",
+  "createdTime": "2022-04-19T20:58:21.748",
+  "appointmentId": "ID2772",
+  "updatedTime": "2022-04-19T20:58:26.815"
+
+
+
+Sample searches:
+
+
+FT.SEARCH idx-createdTime * limit 2 2
+
+
+
