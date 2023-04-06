@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bestarch.demo</groupId>
-	<artifactId>appointment-directory</artifactId>
+	<artifactId>rate_limiting_demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>appointment-directory</name>
+	<name>rate_limiting_demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -73,28 +73,17 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
-		  <groupId>com.google.code.gson</groupId>
-		  <artifactId>gson</artifactId>
-		</dependency>
-
-		<dependency>
-	      <groupId>com.redislabs</groupId>
-	      <artifactId>jrejson</artifactId>
-	      <version>1.5.0</version>
-	    </dependency>
-	    
-	    <dependency>
-		    <groupId>com.redislabs</groupId>
-		    <artifactId>spring-redisearch</artifactId>
-		    <version>3.1.2</version>
-		</dependency>
-
 	    <dependency>
 	    	<groupId>org.springframework.boot</groupId>
 	    	<artifactId>spring-boot-configuration-processor</artifactId>
 	    	<optional>true</optional>
 	    </dependency>
+	    
+	    <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>

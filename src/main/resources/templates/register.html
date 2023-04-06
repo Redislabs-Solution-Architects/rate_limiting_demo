@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	<meta name="generator" content="Hugo 0.88.1">
-	<title>Appointment for Doctor</title>
+	<title>User registration</title>
 
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/checkout/">
 
@@ -32,7 +32,7 @@
 	</style>
 
 	<!-- Custom styles for this template -->
-	<link href="form-validation.css" rel="stylesheet">
+	<link href="/assets/custom/form-validation.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -41,28 +41,24 @@
 
 	<div class="container-fluid">
 
-		<div class="row" th:replace="nav.html"></div>
-
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 			<div class="py-5 text-center">
-				<h2>New appointment</h2>
+				<h2>New user</h2>
 				<hr />
 			</div>
 
 			<div class="row g-5">
 
-				<form action="#" th:action="@{/appointment}" th:object="${appointment}" method="post">
-
+				<form th:action="@{/customer}" th:object="${customer}" method="post" class="needs-validation">
+				
 					<div class="row mb-3">
 						<div class="col-md-4 themed-grid-col">
-							<label for="doctorName" class="form-label">Doctor</label>
+							<label for="plan" class="form-label">Service plan</label>
 						</div>
 						<div class="col-md-4 themed-grid-col">
-							<select class="form-control" th:field="*{doctorName}" id="doctorName" required>
-							  <option value="Dr. Richard Girardi">Dr. Richard Girardi </option>
-							  <option value="Dr. John Brown">Dr. John Brown</option>
-							  <option value="Dr. Robert Adams">Dr. Robert Adams</option>
-							  <option value="Dr. Rio Trento">Dr. Rio Trento</option>
+							<select class="form-control" th:field="*{plan}" id="plan" required>
+							  <option value="Standard">USD 5,000/month</option>
+							  <option value="Premium">USD 7,500/month</option>
 							</select>
 						</div>
 						<div class="col-md-4 themed-grid-col"></div>
@@ -70,20 +66,40 @@
 
 					<div class="row mb-3">
 						<div class="col-md-4 themed-grid-col">
-							<label for="username" class="form-label">Representative/self</label>
+							<label for="username" class="form-label">User name</label>
 						</div>
 						<div class="col-md-4 themed-grid-col">
-							<input type="text" class="form-control" id="username" th:field="*{username}" readonly>
+							<input type="text" class="form-control" id="username" th:field="*{username}" required="true">
+						</div>
+						<div class="col-md-4 themed-grid-col"></div>
+					</div>
+					
+					<div class="row mb-3">
+						<div class="col-md-4 themed-grid-col">
+							<label for="password" class="form-label">Enter password</label>
+						</div>
+						<div class="col-md-4 themed-grid-col">
+							<input type="text" class="form-control" id="password" th:field="*{password}" required="true">
+						</div>
+						<div class="col-md-4 themed-grid-col"></div>
+					</div>
+					
+					<div class="row mb-3">
+						<div class="col-md-4 themed-grid-col">
+							<label for="password2" class="form-label">Re-enter password</label>
+						</div>
+						<div class="col-md-4 themed-grid-col">
+							<input type="text" class="form-control" id="password2" th:field="*{password2}" required="true">
 						</div>
 						<div class="col-md-4 themed-grid-col"></div>
 					</div>
 
 					<div class="row mb-3">
 						<div class="col-md-4 themed-grid-col">
-							<label for="description" class="form-label">Medical condition/reason</label>
+							<label for="description" class="form-label">Description</label>
 						</div>
 						<div class="col-md-4 themed-grid-col">
-							<textarea class="form-control" id="description" th:field="*{description}" required />
+							<textarea class="form-control" id="description" th:field="*{description}" />
 						</div>
 						<div class="col-md-4 themed-grid-col"></div>
 					</div>
@@ -100,21 +116,11 @@
 
 					<div class="row mb-3">
 						<div class="col-md-4 themed-grid-col">
-							<label for="appointmentDate" class="form-label">Date</label>
+							<a class="w-100 btn btn-info btn-sm" href="/login">Cancel</a>&nbsp;
 						</div>
+						
 						<div class="col-md-4 themed-grid-col">
-							<input type="datetime-local" class="form-control" id="appointmentDate"
-								th:field="*{appointmentDateStr}" required>
-						</div>
-						<div class="col-md-4 themed-grid-col"></div>
-					</div>
-
-					<div class="row mb-3">
-						<div class="col-md-4 themed-grid-col">
-							<a class="w-100 btn btn-primary btn-sm" href="/appointments">Cancel</a>
-						</div>
-						<div class="col-md-4 themed-grid-col">
-							<input type="submit" class="w-100 btn btn-primary btn-sm" value="Submit the request" />
+							<input type="submit" class="w-100 btn btn-primary btn-sm" value="Save" />
 						</div>
 						<div class="col-md-4 themed-grid-col"></div>
 					</div>
@@ -128,6 +134,7 @@
 	</div>
 
 	<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/custom/form-validation.js"></script>
 
 </body>
 

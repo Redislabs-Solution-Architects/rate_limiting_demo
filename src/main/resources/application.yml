@@ -12,21 +12,13 @@ server:
   servlet:
     session:
       timeout: 300
-    context-path: /ratelimit
+#    context-path: /ratelimit
 
   
-app:
-  users:
-    - user1
-    - user2
-    - user3
-    - user4
-
-
 api:
   max:
     requests:
-      minute: 20
-  default:
-    requests:
-      minute: 5
+        standard:
+          minute: 5
+        premium:
+          minute: 15

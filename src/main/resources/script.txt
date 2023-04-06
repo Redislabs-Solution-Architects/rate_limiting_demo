@@ -1,25 +1,5 @@
-Indexes:
-FT.CREATE idx-createdTime-v2 PREFIX 1 "appointment:" SCHEMA createdTime NUMERIC SORTABLE
-
-
-Data Model:
-
-  "username": "abhishek",
-  "doctorName": "Dr. ABC",
-  "contactNo": "12321",
-  "appointmentDate": "2022-04-11T20:58",
-  "status": "Confirmed",
-  "description": "fweferferererre",
-  "createdTime": "2022-04-19T20:58:21.748",
-  "appointmentId": "ID2772",
-  "updatedTime": "2022-04-19T20:58:26.815"
-
-
-
-Sample searches:
-
-
-FT.SEARCH idx-createdTime * limit 2 2
-
-
-
+hmset prospect:1 id 1 contactNo 34234234 address "12 New round street" email abc@er.com creditScore 450 requirement "Home loan"
+hmset prospect:2 id 2 contactNo 42343445 address "54 Tower street" email gfgf@er.com creditScore 750 requirement "Home loan"
+hmset prospect:3 id 3 contactNo 88855540 address "423 DD highway Downtown" email aert@er.com creditScore 650 requirement "Personal loan"
+hmset prospect:4 id 4 contactNo 53455550 address "3, Charles street 45" email dert@gmail.com creditScore 620 requirement "N/A"
+hmset prospect:5 id 5 contactNo 98985550 address "47, Fredrick road" email fred@gmail.com creditScore 310 requirement "N/A"
