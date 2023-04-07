@@ -1,18 +1,8 @@
+/*
 package com.bestarch.demo.filter;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.bestarch.demo.util.RateLimitSessionCallback;
+import com.bestarch.demo.util.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +10,16 @@ import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.bestarch.demo.util.RateLimitSessionCallback;
-import com.bestarch.demo.util.Utility;
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.time.LocalDateTime;
 
-@Order(1)
 @Component
-public class RateLimitingFilter implements Filter, ErrorHandler {
+public class RateLimitingFilter extends OncePerRequestFilter implements ErrorHandler {
 
 	private Logger logger = LoggerFactory.getLogger(RateLimitingFilter.class);
 
@@ -39,21 +31,8 @@ public class RateLimitingFilter implements Filter, ErrorHandler {
 	@Autowired
 	private Utility util;
 
-	@PostConstruct
-	public void name() {
-		System.out.println();
-	}
-
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, filterConfig.getServletContext());
-		Filter.super.init(filterConfig);
-	}
-
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		Integer eligiblePermits = 0;
@@ -81,3 +60,4 @@ public class RateLimitingFilter implements Filter, ErrorHandler {
 		redisTemplate.execute(RateLimitSessionCallback.builder().clientKey(clientKey).build());
 	}
 }
+*/
