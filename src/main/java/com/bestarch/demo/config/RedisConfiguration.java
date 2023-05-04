@@ -23,16 +23,11 @@ class RedisConfiguration {
 	@Value("${spring.redis.password}")
 	private String pswd;
 	
-	@Value("${spring.redis.auth}")
-	private boolean requiresPswd;
-	
 	@Bean
 	public RedisConnectionFactory redisConnectionFactory() {
 		RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(server, Integer.valueOf(port));
-		if (requiresPswd) {
-			RedisPassword rp = RedisPassword.of(pswd);
-			redisStandaloneConfiguration.setPassword(rp);
-		}
+		RedisPassword rp = RedisPassword.of(pswd);
+		redisStandaloneConfiguration.setPassword(rp);
 		return new LettuceConnectionFactory(redisStandaloneConfiguration);
 	}
 	

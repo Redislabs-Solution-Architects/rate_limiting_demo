@@ -1,53 +1,33 @@
-/* globals Chart:false, feather:false */
 
-(function () {
-  'use strict'
+	$("#saveBtn").click(function() {
+		$('#tableId tbody > tr').remove();
+		$.ajax({
+			   url: '/api/prospects',
+			   error: function (jqXHR, exception) {
+			         $('#tableId tbody').append('<tr><td></td><td></td><td></td><td></td><td>Quota exceeded: Request limit reached</td><td></td></tr>');
+			         
+			   },
+			   dataType: "json",
+			   success: function(data, textStatus, xhr) {
+				   var ss = JSON.stringify(data)
+				   var res = $.parseJSON(ss);
+				   
+				   if(xhr.status == 200) {
+					   $.each(res, function(k, v) {
+						   //$('#tableId tr:last').after('<tr><td>' + v.id + '</td><td>' + v.contactNo + '</td><td>' + v.address + '</td><td>' + v.email + '</td><td>' + v.creditScore + '</td><td>' + v.requirement + '</td></tr>');
+					   	 $('#tableId tbody').append('<tr><td>' + v.id + '</td><td>' + v.contactNo + '</td><td>' + v.address + '</td><td>' + v.email + '</td><td>' + v.creditScore + '</td><td>' + v.requirement + '</td></tr>');
 
-  feather.replace({ 'aria-hidden': 'true' })
-
-  // Graphs
-  var ctx = document.getElementById('myChart')
-  // eslint-disable-next-line no-unused-vars
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
-      ],
-      datasets: [{
-        data: [
-          15339,
-          21345,
-          18483,
-          24003,
-          23489,
-          24092,
-          12034
-        ],
-        lineTension: 0,
-        backgroundColor: 'transparent',
-        borderColor: '#007bff',
-        borderWidth: 4,
-        pointBackgroundColor: '#007bff'
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      },
-      legend: {
-        display: false
-      }
-    }
-  })
-})()
+					   });
+				   }
+			   },
+			   complete: function(xhr, textStatus) {
+			       if (xhr.status == 999) {
+			    	   window.location.replace("login");
+			       }
+			   },
+			   method: "GET",
+			   contentType:"application/json"
+			});
+	});
+	
+	

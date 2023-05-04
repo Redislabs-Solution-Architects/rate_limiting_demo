@@ -26,14 +26,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
         .csrf().disable()
         .authorizeRequests()
-        .antMatchers("/assets/**", "/register**").permitAll()
+        .antMatchers("/assets/**", "/register**", "/api**").permitAll()
         .antMatchers(HttpMethod.POST, "/customer**").permitAll()
         .anyRequest().authenticated()
         .and()
         .formLogin()
         .loginPage("/login")
         .loginProcessingUrl("/perform_login").permitAll()
-        .defaultSuccessUrl("/prospects")
+        .defaultSuccessUrl("/dashboard")
         ;
 
     }

@@ -41,7 +41,7 @@
 
 	<div class="container-fluid">
 
-		<main class="col-md-9 ms-sm-auto col-lg-11 px-md-4">
+		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 			<div class="py-5 text-center">
 				<h2>Available Prospects</h2>
 				<hr />
@@ -66,17 +66,16 @@
 					</div>
 					<div class="col-md-1 themed-grid-col"></div>
 					<div class="col-md-2 themed-grid-col">
-						<input type="submit" class="w-100 btn btn-primary btn-sm" value="Submit the request" />
+						<input type="submit" class="w-100 btn btn-primary btn-sm" value="Submit the request" id="saveBtn"/>
 					</div>
 				</div>
 
 				<div class="row mb-3"></div>
 
 			</div>
-			
-			
-			<div class="table-responsive">
-				<table class="table table-striped table-sm">
+
+			<div class="table-responsive" id="divContent">
+				<table class="table table-striped table-sm" id="tableId">
 					<thead>
 						<tr>
 							<th scope="col">Id</th>
@@ -87,15 +86,15 @@
 							<th scope="col">Requirement</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr th:each="prospect: ${prospects}">
+					<tbody id="tbodyId">
+						<!--<tr th:each="prospect: ${prospects}">
 							<td th:text="${prospect.id}"></td>
 							<td th:text="${prospect.contactNo}"></td>
 							<td th:text="${prospect.address}"></td>
 							<td th:text="${prospect.email}"></td>
 							<td th:text="${prospect.creditScore}"></td>
 							<td th:text="${prospect.requirement}"></td>
-						</tr>
+						</tr>-->
 					</tbody>
 				</table>
 			</div>
@@ -105,7 +104,8 @@
 	</div>
 
 	<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
-<!--	<script src="/assets/dist/js/jquery.min.js"></script>-->
+	<script src="/assets/dist/js/jquery.min.js"></script>
+	<script src="/assets/dist/js/dashboard.js"></script>
 
 </body>
 

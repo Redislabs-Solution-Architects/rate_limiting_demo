@@ -25,8 +25,8 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.bestarch.demo.util.RateLimitSessionCallback;
 import com.bestarch.demo.util.Utility;
 
-@Order(1)
-@Component
+//@Order(1)
+//@Component
 public class RateLimitingFilter implements Filter, ErrorHandler {
 
 	private Logger logger = LoggerFactory.getLogger(RateLimitingFilter.class);
@@ -60,7 +60,7 @@ public class RateLimitingFilter implements Filter, ErrorHandler {
 		String loggedInUser = null;
 		String clientKey = null;
 
-		if (util.isAuthenticated()) {
+		if (isThrottlingRequired(req.getRequestURI())) {
 			loggedInUser = util.getUsername();
 			eligiblePermits = util.getPermitsForLoggedInUser(loggedInUser);
 			clientKey = loggedInUser + ":" + LocalDateTime.now().getMinute();
@@ -72,9 +72,16 @@ public class RateLimitingFilter implements Filter, ErrorHandler {
 				handle(resp, loggedInUser, 429, ERR_MSG);
 				return;
 			}
-			chain.doFilter(request, response);
+			
 		}
-		return;
+		chain.doFilter(request, response);
+	}
+	
+	private boolean isThrottlingRequired(String uri) {
+		if (uri.equalsIgnoreCase("/api/prospects")) {
+			return true;
+		}
+		return false;
 	}
 
 	private void handleRequest(String clientKey) {

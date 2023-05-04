@@ -32,7 +32,7 @@ public class CustomerController {
     @Autowired
     private Utility util;
 
-    @GetMapping(value = {"/", "register"})
+    @GetMapping(value = {"register"})
     public ModelAndView getNewRegistrationForm() {
         ModelAndView mv = new ModelAndView("register");
         Customer customer = new Customer();
@@ -46,7 +46,7 @@ public class CustomerController {
         return "redirect:/login";
     }
 
-    @GetMapping(value = {"/login"})
+    @GetMapping(value = {"/", "/login"})
     public String login(HttpServletRequest request, HttpSession session) {
         session.setAttribute("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
         return "login";
@@ -58,12 +58,12 @@ public class CustomerController {
         return "redirect:/login";
     }
 
-    @GetMapping(value = {"/dashboard", "/prospects"})
+    @GetMapping(value = {"/dashboard"})
     public ModelAndView dashboard() {
-        List<Prospect> prospects = new ArrayList<>();
-        prospects.addAll(customerService.getProspects());
+        //List<Prospect> prospects = new ArrayList<>();
+        //prospects.addAll(customerService.getProspects());
         ModelAndView mv = new ModelAndView("welcome");
-        mv.addObject("prospects", prospects);
+        //mv.addObject("prospects", prospects);
         Optional<Customer> cust = customerService.getCustomer();
         if (cust.isPresent()) {
             Customer c = cust.get();
