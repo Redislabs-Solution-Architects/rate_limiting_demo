@@ -15,5 +15,7 @@ public class Prospect {
     private String address;
     private String email;
     private Integer creditScore;
+    private Double liability;
+    private Integer defaults;
     private String requirement;
 }

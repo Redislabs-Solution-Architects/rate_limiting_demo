@@ -1,6 +1,7 @@
 package com.bestarch.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class CustomerAPIController {
     public ResponseEntity<List<Prospect>> prospects() {
         List<Prospect> prospects = new ArrayList<>();
         prospects.addAll(customerService.getProspects());
+        Collections.shuffle(prospects);
         return ResponseEntity.ok().body(prospects);
     }
 
