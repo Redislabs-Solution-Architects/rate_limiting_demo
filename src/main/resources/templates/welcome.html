@@ -14,6 +14,7 @@
 	<!-- Bootstrap core CSS -->
 	<link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/assets/dist/css/dashboard.css" rel="stylesheet">
+	<link href="/assets/dist/css/modals.css" rel="stylesheet">
 
 	<style>
 		.bd-placeholder-img {
@@ -55,7 +56,7 @@
 					</div>
 					<div class="col-md-3 themed-grid-col">
 						<p class="h6"><span sec:authentication="name"></span>
-						<span th:text="${plan}" class="badge bg-primary"></span></p>
+						<span th:text="${plan}" class="badge bg-success"></span></p>
 					</div>
 					<div class="col-md-1 themed-grid-col"></div>
 					<div class="col-md-2 themed-grid-col">
@@ -64,12 +65,12 @@
 					<div class="col-md-2 themed-grid-col">
 						<p class="h6"><span th:text="${permits}" class="badge bg-success"></span></p>
 					</div>
-					<div class="col-md-1 themed-grid-col"></div>
 					<div class="col-md-2 themed-grid-col">
-						<input type="submit" class="w-100 btn btn-primary btn-sm" value="Submit the request" id="saveBtn"/>
+						<input type="submit" class="btn btn-success btn-sm" value="Submit the request" id="saveBtn"/>
 					</div>
 				</div>
 
+				<div class="row mb-3"></div>
 				<div class="row mb-3"></div>
 
 			</div>
@@ -98,9 +99,43 @@
 					</tbody>
 				</table>
 			</div>
+			
+			
+			<div th:if="${plan=='Standard'}">
+				<button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#upgradeModal">Upgrade to Premium</button>
+			</div>
 
 		</main>
 
+	</div>
+	
+	<div class="modal fade" tabindex="-1" role="dialog" id="upgradeModal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content rounded-6 shadow">
+		  <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Upgrade to Premium!</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        <ul class="d-grid gap-4list-unstyled">
+	          <li class="d-flex gap-4">
+	            <svg class="bi text-warning flex-shrink-0" width="48" height="48"><use xlink:href="#bookmark-star"/></svg>
+	            <div>
+	              <h5 class="mb-0">Premium plan</h5>
+	              You will be charged $7,500 /month
+	            </div>
+	          </li>
+	        </ul>
+	        <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		        <form th:action="@{/upgrade?plan=premium}" method="post">
+	        		<input type="submit" class="btn btn-primary" data-bs-dismiss="modal" value="Confirm" />
+	        	</form>
+		    </div>
+	        
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
 	<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
@@ -108,5 +143,12 @@
 	<script src="/assets/dist/js/dashboard.js"></script>
 
 </body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+ <symbol id="bookmark-star" viewBox="0 0 16 16">
+    <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
+    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+  </symbol>
+</svg>
 
 </html>

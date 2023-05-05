@@ -27,7 +27,7 @@ public class Utility {
 	}
 	
 	public boolean isStandard(String username) {
-		String val = (String) redisTemplate.opsForHash().get("plan", "customer:"+username);
+		String val = (String) redisTemplate.opsForHash().get("customer:"+username, "plan");
 		if ("Standard".equalsIgnoreCase(val)) {
 			return true;
 		}
@@ -35,7 +35,7 @@ public class Utility {
 	}
 	
 	public boolean isPremium(String username) {
-		String val = (String) redisTemplate.opsForHash().get("plan", "customer:"+username);
+		String val = (String) redisTemplate.opsForHash().get("customer:"+username, "plan");
 		if ("Premium".equalsIgnoreCase(val)) {
 			return true;
 		}

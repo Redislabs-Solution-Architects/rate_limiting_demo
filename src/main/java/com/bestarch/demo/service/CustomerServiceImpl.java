@@ -60,4 +60,9 @@ public class CustomerServiceImpl extends CustomerService {
         return pros;
     }
 
+	@Override
+	public void upgradeCustomer(String plan) {
+		redisTemplate.opsForHash().put("customer:"+util.getUsername(), "plan", "Premium");
+	}
+
 }

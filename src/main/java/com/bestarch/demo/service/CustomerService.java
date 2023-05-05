@@ -26,4 +26,6 @@ public abstract class CustomerService {
 
 	public abstract List<Prospect> getProspects();
 
+	public abstract void upgradeCustomer(String plan);
+
 }

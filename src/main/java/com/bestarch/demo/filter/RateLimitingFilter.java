@@ -16,17 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.bestarch.demo.util.RateLimitSessionCallback;
 import com.bestarch.demo.util.Utility;
 
-//@Order(1)
-//@Component
 public class RateLimitingFilter implements Filter, ErrorHandler {
 
 	private Logger logger = LoggerFactory.getLogger(RateLimitingFilter.class);

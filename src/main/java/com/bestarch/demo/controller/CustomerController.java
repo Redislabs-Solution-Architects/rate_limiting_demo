@@ -1,27 +1,24 @@
 package com.bestarch.demo.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.bestarch.demo.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bestarch.demo.domain.Customer;
-import com.bestarch.demo.domain.Prospect;
 import com.bestarch.demo.service.CustomerService;
+import com.bestarch.demo.util.Utility;
 
 @Controller
 public class CustomerController {
@@ -46,6 +43,12 @@ public class CustomerController {
         return "redirect:/login";
     }
 
+    @PostMapping(value = "/upgrade", consumes = {"application/x-www-form-urlencoded;charset=UTF-8"})
+    public String upgradeCustomer(@RequestParam(name = "plan") String plan) {
+        customerService.upgradeCustomer(plan);
+        return "redirect:/login";
+    }
+    
     @GetMapping(value = {"/", "/login"})
     public String login(HttpServletRequest request, HttpSession session) {
         session.setAttribute("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
@@ -60,10 +63,7 @@ public class CustomerController {
 
     @GetMapping(value = {"/dashboard"})
     public ModelAndView dashboard() {
-        //List<Prospect> prospects = new ArrayList<>();
-        //prospects.addAll(customerService.getProspects());
         ModelAndView mv = new ModelAndView("welcome");
-        //mv.addObject("prospects", prospects);
         Optional<Customer> cust = customerService.getCustomer();
         if (cust.isPresent()) {
             Customer c = cust.get();
