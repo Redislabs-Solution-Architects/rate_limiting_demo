@@ -46,7 +46,7 @@ public class CustomerController {
     @PostMapping(value = "/upgrade", consumes = {"application/x-www-form-urlencoded;charset=UTF-8"})
     public String upgradeCustomer(@RequestParam(name = "plan") String plan) {
         customerService.upgradeCustomer(plan);
-        return "redirect:/login";
+        return "redirect:/dashboard";
     }
     
     @GetMapping(value = {"/", "/login"})
