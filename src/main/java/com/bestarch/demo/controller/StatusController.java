@@ -28,11 +28,9 @@ public class StatusController {
 		String clientKey = username + ":" + LocalDateTime.now().getMinute();
 		String usedPermit = (String) redisTemplate.opsForValue().get(clientKey);
 		Integer eligiblePermits = util.getPermitsForLoggedInUser(username);
-		Integer availablePermits = 0;
+		Integer availablePermits = eligiblePermits;
 		if (!ObjectUtils.isEmpty(usedPermit)) {
 			availablePermits = eligiblePermits - Integer.valueOf(usedPermit);
-		} else {
-			availablePermits = eligiblePermits;
 		}
 		return StatusMessage.builder().quota(Integer.valueOf(availablePermits)).build();
 	}
