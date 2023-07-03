@@ -1,0 +1,23 @@
+spring:
+  redis:
+    host: localhost 
+    port: 6379
+    password: admin
+  main:
+    allow-circular-references: true
+    
+    
+server:
+  servlet:
+    session:
+      timeout: 300
+#    context-path: /ratelimit
+
+  
+api:
+  max:
+    requests:
+        standard:
+          minute: 5
+        premium:
+          minute: 15

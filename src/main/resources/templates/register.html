@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+	<meta name="generator" content="Hugo 0.88.1">
+	<title>User registration</title>
+
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/checkout/">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/dist/css/dashboard.css" rel="stylesheet">
+
+	<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+
+		@media (min-width: 768px) {
+			.bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			}
+		}
+	</style>
+
+	<!-- Custom styles for this template -->
+	<link href="/assets/custom/form-validation.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+	<header th:insert="header.html"> </header>
+
+	<div class="container-fluid">
+
+		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+			<div class="py-5 text-center">
+				<h2>New user</h2>
+				<hr />
+			</div>
+
+			<div class="row g-5">
+
+				<form th:action="@{/customer}" th:object="${customer}" method="post" class="needs-validation">
+				
+					<div class="row mb-3">
+						<div class="col-md-4 themed-grid-col">
+							<label for="plan" class="form-label">Service plan</label>
+						</div>
+						<div class="col-md-4 themed-grid-col">
+							<select class="form-control" th:field="*{plan}" id="plan" required>
+							  <option value="Standard">USD 5,000/month</option>
+							  <option value="Premium">USD 7,500/month</option>
+							</select>
+						</div>
+						<div class="col-md-4 themed-grid-col"></div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-4 themed-grid-col">
+							<label for="username" class="form-label">User name</label>
+						</div>
+						<div class="col-md-4 themed-grid-col">
+							<input type="text" class="form-control" id="username" th:field="*{username}" required="true">
+						</div>
+						<div class="col-md-4 themed-grid-col"></div>
+					</div>
+					
+					<div class="row mb-3">
+						<div class="col-md-4 themed-grid-col">
+							<label for="password" class="form-label">Enter password</label>
+						</div>
+						<div class="col-md-4 themed-grid-col">
+							<input type="text" class="form-control" id="password" th:field="*{password}" required="true">
+						</div>
+						<div class="col-md-4 themed-grid-col"></div>
+					</div>
+					
+					<div class="row mb-3">
+						<div class="col-md-4 themed-grid-col">
+							<label for="password2" class="form-label">Re-enter password</label>
+						</div>
+						<div class="col-md-4 themed-grid-col">
+							<input type="text" class="form-control" id="password2" th:field="*{password2}" required="true">
+						</div>
+						<div class="col-md-4 themed-grid-col"></div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-4 themed-grid-col">
+							<label for="description" class="form-label">Description</label>
+						</div>
+						<div class="col-md-4 themed-grid-col">
+							<textarea class="form-control" id="description" th:field="*{description}" />
+						</div>
+						<div class="col-md-4 themed-grid-col"></div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-4 themed-grid-col">
+							<label for="contact" class="form-label">Contact Number</label>
+						</div>
+						<div class="col-md-4 themed-grid-col">
+							<input type="tel" class="form-control" id="contact" th:field="*{contactNo}">
+						</div>
+						<div class="col-md-4 themed-grid-col"></div>
+					</div>
+
+					<div class="row mb-3">
+						<div class="col-md-4 themed-grid-col">
+							<a class="w-100 btn btn-info btn-sm" href="/login">Cancel</a>&nbsp;
+						</div>
+						
+						<div class="col-md-4 themed-grid-col">
+							<input type="submit" class="w-100 btn btn-primary btn-sm" value="Save" />
+						</div>
+						<div class="col-md-4 themed-grid-col"></div>
+					</div>
+
+				</form>
+
+			</div>
+
+		</main>
+
+	</div>
+
+	<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/custom/form-validation.js"></script>
+
+</body>
+
+</html>
