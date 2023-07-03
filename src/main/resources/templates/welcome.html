@@ -48,23 +48,41 @@
 				<hr />
 			</div>
 
-			<div class="row g-5">
+			<div class="row ">
 
-				<div class="row mb-4">
+				<div class="row mb-4 alert alert-success">
 					<div class="col-md-1 themed-grid-col">
 						<label class="form-label">User</label>
 					</div>
+					
 					<div class="col-md-3 themed-grid-col">
-						<p class="h6"><span sec:authentication="name"></span>
+						<p class="h6"><span sec:authentication="name" id="username"></span>
 						<span th:text="${plan}" class="badge bg-success"></span></p>
 					</div>
-					<div class="col-md-1 themed-grid-col"></div>
+					
 					<div class="col-md-2 themed-grid-col">
-						<label class="form-label">Available API quota(/min)</label>
+						<label class="form-label">API Plan (requests/min)</label>
 					</div>
-					<div class="col-md-2 themed-grid-col">
+					
+					<div class="col-md-1 themed-grid-col">
 						<p class="h6"><span th:text="${permits}" class="badge bg-success"></span></p>
 					</div>
+					
+					<div class="col-md-1 themed-grid-col"></div>
+						
+					<div class="col-md-2 themed-grid-col">
+						<label class="form-label">Available API quota(requests/min)</label>
+					</div>
+					
+					<div class="col-md-1 themed-grid-col">
+						<p class="h6"><span class="badge bg-info" id="availableQuota"></span></p>
+					</div>
+					
+					
+				</div>
+				
+				<div class="row ">
+					
 					<div class="col-md-2 themed-grid-col">
 						<input type="submit" class="btn btn-success btn-sm" value="Submit the request" id="saveBtn"/>
 					</div>
@@ -146,7 +164,10 @@
 
 	<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/assets/dist/js/jquery.min.js"></script>
+	<script src="/assets/dist/js/sockjs-0.3.4.js"></script>
+	<script src="/assets/dist/js/stomp.js"></script>
 	<script src="/assets/dist/js/dashboard.js"></script>
+
 
 </body>
 

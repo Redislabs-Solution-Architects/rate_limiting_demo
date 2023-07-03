@@ -1,4 +1,11 @@
 
+	stompClient = null;
+	connect();
+	
+	setInterval(function() {
+	  checkQuota($('#username').text());
+	}, 3000);
+
 	$("#saveBtn").click(function() {
 		
 		$.ajax({
@@ -35,5 +42,21 @@
 			   contentType:"application/json"
 			});
 	});
+	
+			
+	function connect() {
+	    stompClient = Stomp.client('ws://localhost:8080/status');
+	    stompClient.connect({}, function (frame) {
+	        stompClient.subscribe('/topic/messages', function (response) {
+	            message = JSON.parse(response.body).quota;
+	            $("#availableQuota").text(message);
+	        });
+	    });
+	}
+	    
+	function checkQuota(username) {
+		stompClient.send("/app/quota", {}, username);
+	}
+
 	
 	
