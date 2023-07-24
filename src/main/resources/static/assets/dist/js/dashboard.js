@@ -4,7 +4,7 @@
 	
 	setInterval(function() {
 	  checkQuota($('#username').text());
-	}, 3000);
+	}, 500);
 
 	$("#saveBtn").click(function() {
 		

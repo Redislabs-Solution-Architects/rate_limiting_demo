@@ -20,6 +20,8 @@ import com.bestarch.demo.domain.Customer;
 import com.bestarch.demo.service.CustomerService;
 import com.bestarch.demo.util.Utility;
 
+import io.micrometer.core.instrument.util.StringUtils;
+
 @Controller
 public class CustomerController {
 
@@ -50,8 +52,10 @@ public class CustomerController {
     }
     
     @GetMapping(value = {"/", "/login"})
-    public String login(HttpServletRequest request, HttpSession session) {
-        session.setAttribute("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
+    public String login(HttpServletRequest request, HttpSession session, @RequestParam(defaultValue = "false") Boolean error) {
+    	if (Boolean.valueOf(error)) {
+    		session.setAttribute("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
+    	}
         return "login";
     }
 
@@ -62,7 +66,8 @@ public class CustomerController {
     }
 
     @GetMapping(value = {"/dashboard"})
-    public ModelAndView dashboard() {
+    public ModelAndView dashboard(HttpSession session) {
+    	session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
         ModelAndView mv = new ModelAndView("welcome");
         Optional<Customer> cust = customerService.getCustomer();
         if (cust.isPresent()) {

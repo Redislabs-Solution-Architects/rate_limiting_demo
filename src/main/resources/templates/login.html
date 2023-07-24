@@ -17,7 +17,7 @@
       <form class="form-signin" method="post" action="/perform_login">
         <h2 class="form-signin-heading">Please sign in</h2>
 
-<!--        <div class="alert alert-danger" role="alert" th:object="${session.sessionAttr:error}"></div>-->
+        <div class="alert alert-danger" th:if="${session.error != null}"role="alert" th:text="${session.error}"></div>
 
         <p>
           <label for="username" class="sr-only">Username</label>
