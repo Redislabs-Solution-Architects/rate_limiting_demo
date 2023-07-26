@@ -45,7 +45,7 @@
 	
 			
 	function connect() {
-	    stompClient = Stomp.client('ws://localhost:8080/status');
+	    stompClient = Stomp.client('ws://'+location.host+'/status');
 	    stompClient.connect({}, function (frame) {
 	        stompClient.subscribe('/topic/messages', function (response) {
 	            message = JSON.parse(response.body).quota;
