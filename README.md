@@ -1,5 +1,5 @@
 # rate limiting demo
-######The demo showcases subscription based API rate limiting using fixed window algorithm. The application also implements authentication and session externalisation using Redis and Spring.
+######The demo showcases subscription based API rate limiting using fixed window algorithm. Application also implements authentication and session externalisation using Redis and Spring.
 
 ##### Run using docker
 
