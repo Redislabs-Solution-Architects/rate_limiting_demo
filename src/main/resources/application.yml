@@ -5,7 +5,10 @@ spring:
     password: admin
   main:
     allow-circular-references: true
-    
+  session:
+    redis:
+      flush-mode: on-save
+      namespace: "{spring:session}"
     
 server:
   servlet:
