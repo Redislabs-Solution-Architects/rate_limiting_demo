@@ -1,11 +1,14 @@
 spring:
   redis:
-    host: localhost 
-    port: 6379
-    password: admin
+    host: redis-14697.c26344.ap-south-1-mz.ec2.cloud.rlrcp.com 
+    port: 14697
+    password: UV1u9CYO8LnXGI4yMjh1PZVxIAOrTxqp
   main:
     allow-circular-references: true
-    
+  session:
+    redis:
+      flush-mode: on-save
+      namespace: "{spring:session}"
     
 server:
   servlet:
